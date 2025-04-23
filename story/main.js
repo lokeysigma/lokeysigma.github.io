@@ -7,8 +7,8 @@ function randomValueFromArray(array){
   return array[random];
 }
 
-const storyText = ' Jake had a love-hate relationship with mornings. Mostly hate. So he bought The Thunder Rooster 5000, a high-tech alarm clock that promised to wake up “even the dead or your money back.”
-
+const storyText = 
+  ' Jake had a love-hate relationship with mornings. Mostly hate. So he bought The Thunder Rooster 5000, a high-tech alarm clock that promised to wake up “even the dead or your money back.”
 It had 12 alarm tones, including:
 “Fire Truck in a Metal Band”
 “Angry Goose in Your Room”
