@@ -25,7 +25,7 @@ Jake said, “My alarm clock exploded during a water attack.”
 His boss gave him the day off because she was too confused to argue.';
 const insertX = ['the rizzler', 'Big Daddy', 'ryan reynolds' , 'shrek'];
 const insertY = ['Fire Truck in a Metal Band' , 'Angry Goose in Your Room' , 'Your Mom Saying Your Full Name' , 'pot and pans'];
-const insertZ = ['spontaneously combusted', 'melted into a puddle on the sidewalk', 'turned into a slug and crawled away', 'turned into a super nova and floated away'];
+const insertZ = ['spontaneously combusted', 'melted into a puddle on the floor', 'turned into a slug and crawled away', 'turned into a super nova and floated away'];
 
 randomize.addEventListener('click', result);
 
