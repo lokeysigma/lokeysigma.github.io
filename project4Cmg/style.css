@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: limegreen;
+    color: white;
+}
+
+header {
+    background: red;
+    color: black;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 4px solid yellow;
+}
+
+header h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: white;
+}
+
+nav {
+    background: dodgerblue;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+nav a {
+    color: yellow;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+main img {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
+    border: 2px solid yellow;
+    border-radius: 10px;
+}
+
+#game-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+#game-list li {
+    background: dodgerblue;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+footer {
+    background: dodgerblue;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+button {
+    background: limegreen;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+button:hover {
+    background: red;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+}
