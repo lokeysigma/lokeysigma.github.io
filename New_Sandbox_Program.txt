@@ -1,0 +1,105 @@
+const DINO_IMAGE = "https://codehs.com/uploads/abbaa5fa6a24e0dbba2222f756db7fe7";
+const PIPE_WIDTH = 85;
+const GAP_HEIGHT = 150;
+const GRAVITY = 3;
+const FLAP_STRENGTH = -20;
+const PIPE_SPEED = 5;
+
+let dino;
+let velocity = 0;
+let pipes = [];
+let score = 0;
+let scoreLabel;
+let gameOver = false;
+
+function main() {
+    setBackgroundColor("#87ceeb");
+
+    dino = new WebImage(DINO_IMAGE);
+    dino.setSize(60, 60);
+    dino.setPosition(100, getHeight() / 2);
+    add(dino);
+
+    scoreLabel = new Text(" Score:0", "20pt Arial");
+    scoreLabel.setPosition(20, 30);
+    add(scoreLabel);
+
+    keyDownMethod(flap);
+    setTimer(updateGame, 40);
+    setTimer(spawnPipe, 2000);
+}
+
+function flap(e) {
+    if (e.key === " ") {
+        velocity = FLAP_STRENGTH;
+    }
+}
+
+function updateGame() {
+    if (gameOver) return;
+
+    velocity += GRAVITY;
+    dino.move(0, velocity);
+
+    if (dino.getY() + dino.getHeight() > getHeight() || dino.getY() < 0) {
+        endGame();
+        return;
+    }
+
+    for (let i = 0; i < pipes.length; i++) {
+        pipes[i].top.move(-PIPE_SPEED, 0);
+        pipes[i].bottom.move(-PIPE_SPEED, 0);
+
+        if (!pipes[i].scored && pipes[i].top.getX() + PIPE_WIDTH < dino.getX()) {
+            score++;
+            scoreLabel.setText("Score: " + score);
+            pipes[i].scored = true;
+        }
+
+        if (checkCollision(dino, pipes[i].top) || checkCollision(dino, pipes[i].bottom)) {
+            endGame();
+            return;
+        }
+    }
+
+    // Remove off-screen pipes
+    pipes = pipes.filter(pipe => pipe.top.getX() + PIPE_WIDTH > 0);
+}
+
+function spawnPipe() {
+    if (gameOver) return;
+
+    let gapY = Randomizer.nextInt(100, getHeight() - GAP_HEIGHT - 100);
+
+    let topPipe = new Rectangle(PIPE_WIDTH, gapY);
+    topPipe.setPosition(getWidth(), 0);
+    topPipe.setColor(Color.green);
+    add(topPipe);
+
+    let bottomPipeHeight = getHeight() - gapY - GAP_HEIGHT;
+    let bottomPipe = new Rectangle(PIPE_WIDTH, bottomPipeHeight);
+    bottomPipe.setPosition(getWidth(), gapY + GAP_HEIGHT);
+    bottomPipe.setColor(Color.green);
+    add(bottomPipe);
+
+    pipes.push({ top: topPipe, bottom: bottomPipe, scored: false });
+}
+
+function checkCollision(obj1, obj2) {
+    return (
+        obj1.getX() < obj2.getX() + obj2.getWidth() &&
+        obj1.getX() + obj1.getWidth() > obj2.getX() &&
+        obj1.getY() < obj2.getY() + obj2.getHeight() &&
+        obj1.getY() + obj1.getHeight() > obj2.getY()
+    );
+}
+
+function endGame() {
+    gameOver = true;
+    let gameOverText = new Text("Game Over", "30pt Arial");
+    gameOverText.setPosition(getWidth() / 2 - 80, getHeight() / 2);
+    gameOverText.setColor(Color.red);
+    add(gameOverText);
+}
+
+main();
